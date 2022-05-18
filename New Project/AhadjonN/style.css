@@ -1,0 +1,44 @@
+.color {
+    font-family: monospace;
+    background: rgb(156, 156, 156);
+
+}
+
+.padding {
+    padding: 4px;
+
+}
+
+.border {
+    border: 2px solid rgb(0, 0, 0);
+    padding: 10px 20px 10px 20px;
+    margin: 20px;
+    width: 400px
+}
+
+button {
+    display: flex;
+    flex: auto;
+    width: 6rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 200px black;
+    background-color: #000;
+    color: azure;
+}
+
+input {
+    display: flex;
+    flex: auto;
+    width: 20rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 200px black;
+    background-color: rgb(0, 0, 0);
+    color: azure;
+
+}
+
+div {
+    color: rgb(1, 14, 6);
+    box-shadow: 1 10px 200px black;
+    font-weight: 400px;
+}

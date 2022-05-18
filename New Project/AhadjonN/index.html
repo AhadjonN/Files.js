@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<table>
+    <tr>
+        <td>
+
+            <body class="color">
+                <input type=" text" placeholder="Search" onchange="findContacts(this.value)">
+                <button onclick="addNew()"> add </button>
+                <div id="container"></div>
+
+
+                <script>
+                    const container = document.getElementById('container');
+                    const contacts = [
+                        { name: 'ali', telNumber: '+000234234', gmail: 'ali123k@gmail.com', adres: '43-23-12' },
+                        { name: 'vali', telNumber: '+000234234', gmail: 'vali124k@gmail.com', adres: '12-23-15' },
+                        { name: 'bali', telNumber: '+000234234', gmail: 'bali124k@gmail.com', adres: '105-23-46' },
+                    ];
+
+                    drawIntoContainer(contacts);
+
+                    function addNew() {
+                        const obj = {};
+                        obj.name = window.prompt('name');
+                        obj.telNumber = window.prompt('telNumber');
+                        obj.gmail = window.prompt('gmail');
+                        obj.adres = window.prompt('adres');
+                        contacts.push(obj);
+                        drawIntoContainer(contacts);
+                    }
+
+                    function findContacts(str) {
+                        if (!str || contacts.length === 0) {
+                            drawIntoContainer(contacts);
+                            return;
+                        }
+                        const result = contacts.filter(function (contact) {
+                            return contact.name.startsWith(str) || contact.telNumber.includes(str);
+                        });
+                        drawIntoContainer(result);
+                    }
+
+                    function deleteContact(index) {
+                        if (!index || contacts.length === 0) {
+                            drawIntoContainer(contacts);
+                            return;
+                        }
+                        const i = contacts.findIndex((contact) => contact.name === index);
+                        if (i > -1) {
+
+
+
+                            const result = contacts.splice(i, 1);
+
+                            drawIntoContainer(contacts);
+                        }
+                    }
+
+                    function updateContact(contact) {
+                        contacts.splice(index, 1, contact);
+
+                    }
+
+                    function drawIntoContainer(items) {
+                        container.innerHTML = '';
+                        items.forEach(function (item, i) {
+                            const div = document.createElement('p');
+                            div.innerHTML = `${item.name} ${item.telNumber} ${item.gmail} ${item.adres}`;
+                            ///delete
+                            const btn = document.createElement('button');
+                            btn.innerHTML = 'delete';
+                            btn.setAttribute('data-id', i);
+                            btn.onclick = function (evt) {
+                                const el = evt.currentTarget;
+                                const id = +el.getAttribute('data-id');
+                                contacts.splice(i, 1);
+                                drawIntoContainer(contacts);
+                            }
+                            ///update
+                            const kl = document.createElement('button');
+                            kl.innerHTML = 'ediT';
+                            kl.setAttribute('data-id', i);
+                            kl.onclick = function (evt) {
+                                const el = evt.currentTarget;
+                                const id = +el.getAttribute('data-id');
+
+                                const c = {};
+                                c.name = window.prompt('name');
+                                c.telNumber = window.prompt('telNumber');
+                                c.gmail = window.prompt('gmail');
+                                c.adres = window.prompt('adres');
+
+                                contacts.splice(id, 1, c);
+                                drawIntoContainer(contacts);
+                            }
+                            ///
+
+                            div.appendChild(btn);
+                            div.appendChild(kl);
+                            container.appendChild(div);
+                        });
+                    }
+                </script>
+
+</table>
+</body>
+
+</html>

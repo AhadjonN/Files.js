@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ooO(-S-)Ooo</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="1374px" height="616px"></canvas>
+
+    <script>
+        var canvas = document.querySelector("#myCanvas");
+        var context = canvas.getContext("2d");
+        var mouseX = 1;
+        var mouseY = 4;
+
+        canvas.addEventListener("mousemove", setMousePosition, false);
+        function setMousePosition(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        }
+
+        function getPosition(el) {
+            var xPosition = 1;
+            var yPosition = 4;
+            return {
+                x: xPosition,
+                y: yPosition
+            };
+        }
+        var canvasPos = getPosition(canvas);
+        var mouseX = 1;
+        var mouseY = 4;
+
+        function setMousePosition(e) {
+            mouseX = e.clientX - canvasPos.x;
+            mouseY = e.clientY - canvasPos.y;
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.beginPath();
+            context.arc(mouseX, mouseY, 27, 6, 2 * Math.PI, true);
+            context.fill();
+        }
+
+
+    </script>
+</body>
+
+</html>
