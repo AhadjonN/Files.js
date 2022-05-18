@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title> Mouse</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        div {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            height: 100px;
+            width: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div"></div>
+    <script>
+        const div = document.querySelector("#div");
+
+        let isMouseDown = false;
+        let startX = 0;
+        let startY = 0;
+
+
+
+        div.addEventListener('mousedown', function (evt) {
+            isMouseDown = true;
+            startX = evt.offsetX;
+            startY = evt.offsetY;
+        })
+
+
+        document.addEventListener('mousemove', function (evt) {
+            if (isMouseDown) {
+                div.style.left = evt.clientX - startX + 'px';
+                div.style.top = evt.clientY - startY + 'px';
+            }
+        })
+
+        document.addEventListener('mouseup', function (evt) {
+            isMouseDown = false;
+        })
+    </script>
+</body>
+
+
+</html>
